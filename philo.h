@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/14 17:49:43 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:55:58 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	philo_s
 	unsigned long	tt_sleep;
 	unsigned long	nbr_tt_eat;
 	int				*id;
-	int				alive_philo;
+	int				alive;
 	struct timeval	*last_meal;
 	pthread_mutex_t	message;
 	pthread_mutex_t	*forks;
