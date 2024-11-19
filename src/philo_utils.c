@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:16:18 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/18 17:42:07 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:54:41 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,9 @@ int	ft_isdigit(int c)
 unsigned long	ft_atoul(const char *str)
 {
 	unsigned long	res;
-	int				sign;
 	unsigned int	i;
 
 	res = 0;
-	sign = 1;
 	i = 0;
 	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
 		|| str[i] == '\r' || str[i] == '\v' || str[i] == '\f')

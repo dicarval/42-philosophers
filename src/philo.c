@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/18 16:49:31 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:53:50 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	sleep_think(int id, int right, int left, int lock)
 	if (data()->alive)
 	{
 		print_message(id, 3);
-		usleep(data()->tt_sleep);
+		usleep((data()->tt_sleep) * 1000);
 		print_message(id, 4);
 	}
 }
@@ -74,7 +74,7 @@ void	*philo_loop(void *arg)
 		{
 			gettimeofday(&data()->last_meal[id], NULL);
 			print_message(id, 2);
-			usleep(data()->tt_eat);
+			usleep((data()->tt_eat) * 1000);
 		}
 		sleep_think(id, right, left, lock);
 		data()->i_tt_eat++;
