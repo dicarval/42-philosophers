@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:29:58 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/18 15:53:47 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:16:31 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	av_allocation(char **av)
 {
 	av_check(av);
 	data()->nbr_philo = ft_atoul(av[1]);
-	if (data()->nbr_philo == 1)
+	if (data()->nbr_philo == 0)
 		error_hand(2);
 	data()->tt_die = ft_atoul(av[2]);
 	data()->tt_eat = ft_atoul(av[3]);

@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/19 12:53:50 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:56:02 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	forks_up(int id, int right, int left)
 	{
 		pthread_mutex_lock(&(data()->forks[right]));
 		print_message(id, 1);
+		if(data()->nbr_philo == 1)
+			return (2);
 		pthread_mutex_lock(&(data()->forks[left]));
 		print_message(id, 1);
 		lock = 1;
@@ -38,7 +40,13 @@ int	forks_up(int id, int right, int left)
 
 void	sleep_think(int id, int right, int left, int lock)
 {
-	if (id % 2 == 0 && lock == 1)
+	if (lock == 2)
+	{
+		pthread_mutex_unlock(&(data()->forks[right]));
+		while (data()->alive)
+			lock++;
+	}
+	else if (id % 2 == 0 && lock == 1)
 	{
 		pthread_mutex_unlock(&(data()->forks[right]));
 		pthread_mutex_unlock(&(data()->forks[left]));
@@ -48,7 +56,7 @@ void	sleep_think(int id, int right, int left, int lock)
 		pthread_mutex_unlock(&(data()->forks[left]));
 		pthread_mutex_unlock(&(data()->forks[right]));
 	}
-	if (data()->alive)
+	if (data()->alive && lock == 1)
 	{
 		print_message(id, 3);
 		usleep((data()->tt_sleep) * 1000);
@@ -70,7 +78,7 @@ void	*philo_loop(void *arg)
 	 && data()->alive)
 	{
 		lock = forks_up(id, right, left);
-		if (data()->alive)
+		if (data()->alive && lock == 1)
 		{
 			gettimeofday(&data()->last_meal[id], NULL);
 			print_message(id, 2);
