@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:34:13 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/18 17:47:39 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:32:25 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ unsigned long	elapsed_time_meals(struct timeval last_meal)
 	gettimeofday(&now, NULL);
 	elapsed = (now.tv_sec * 1000L + now.tv_usec / 1000) - \
 	(last_meal.tv_sec * 1000L + last_meal.tv_usec / 1000);
-	//printf("%lu\n", elapsed);
-	//usleep(100);
 	return (elapsed);
 }
 
@@ -40,6 +38,7 @@ void	*alive(void *arg)
 			{
 				print_message(i, 5);
 				data()->alive = 0;
+				break ;
 			}
 			i++;
 		}

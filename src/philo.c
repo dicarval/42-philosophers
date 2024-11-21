@@ -6,15 +6,15 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/20 11:56:02 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/21 16:42:34 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	forks_up(int id, int right, int left)
+int	forks_up(unsigned int id, int right, int left)
 {
-	int	lock;
+	int			lock;
 
 	lock = 0;
 	if (id % 2 == 0 && data()->alive)
@@ -61,6 +61,7 @@ void	sleep_think(int id, int right, int left, int lock)
 		print_message(id, 3);
 		usleep((data()->tt_sleep) * 1000);
 		print_message(id, 4);
+		usleep(1000);
 	}
 }
 
