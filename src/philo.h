@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/21 17:22:08 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/22 15:41:58 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,22 @@ typedef struct s_philo
 	unsigned int	*id;
 	int				alive;
 	struct timeval	*last_meal;
-	pthread_mutex_t	message;
-	pthread_mutex_t	*forks;
 	pthread_t		*philo;
 	pthread_t		eat_monit;
 }				t_philo;
 
+/*Mutex Struct*/
+typedef struct s_mutex
+{
+	pthread_mutex_t	message;
+	pthread_mutex_t	*forks;
+	pthread_mutex_t	loop[2];
+
+}				t_mutex;
+
 /*Struct function*/
 t_philo			*data(void);
+t_mutex			*mutex(void);
 
 /*Function to monitoring if all philosophers are alive*/
 void			*alive(void *arg);
