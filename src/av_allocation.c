@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:29:58 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/20 11:16:31 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:10:06 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,30 @@ void	av_check(char **av)
 	}
 }
 
+void	mem_alloc(void)
+{
+	unsigned int	i;
+
+	i = 0;
+	data()->philo = malloc(sizeof(pthread_t) * (data()->nbr_philo));
+	if (data()->philo == NULL)
+		error_hand(3);
+	mutex()->forks = malloc(sizeof(pthread_mutex_t) * (data()->nbr_philo));
+	if (mutex()->forks == NULL)
+		error_hand(3);
+	data()->id = malloc(sizeof(int) * (data()->nbr_philo));
+	if (data()->id == NULL)
+		error_hand(3);
+	data()->last_meal = malloc(sizeof(unsigned long) * (data()->nbr_philo));
+	if (data()->last_meal == NULL)
+		error_hand(3);
+	data()->i_tt_eat = malloc(sizeof(unsigned int) * (data()->nbr_philo));
+	if (data()->i_tt_eat == NULL)
+		error_hand(3);
+	while(data()->i_tt_eat[i])
+		data()->i_tt_eat[i++] = 0;
+}
+
 void	av_allocation(char **av)
 {
 	av_check(av);
@@ -57,20 +81,15 @@ void	av_allocation(char **av)
 	data()->tt_eat = ft_atoul(av[3]);
 	data()->tt_sleep = ft_atoul(av[4]);
 	if (av[5])
+	{
+		data()->no_stop = 0;
 		data()->nbr_tt_eat = ft_atoul(av[5]);
+	}
 	else
-		data()->nbr_tt_eat = -1;
-	data()->philo = malloc(sizeof(pthread_t) * (data()->nbr_philo));
-	if (data()->philo == NULL)
-		error_hand(3);
-	data()->forks = malloc(sizeof(pthread_mutex_t) * (data()->nbr_philo));
-	if (data()->forks == NULL)
-		error_hand(3);
-	data()->id = malloc(sizeof(int) * (data()->nbr_philo));
-	if (data()->id == NULL)
-		error_hand(3);
-	data()->last_meal = malloc(sizeof(struct timeval) * (data()->nbr_philo));
-	if (data()->last_meal == NULL)
-		error_hand(3);
+	{
+		data()->no_stop = 1;
+		data()->nbr_tt_eat = 0;
+	}
+	mem_alloc();
 	data()->alive = 1;
 }

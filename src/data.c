@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:36:34 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/22 15:43:01 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:11:26 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_philo	*data(void)
 
 t_mutex	*mutex(void)
 {
-	static t_mutex	mutexs;
+	static t_mutex	mutexes;
 
-	return (&mutexs);
+	return (&mutexes);
 }

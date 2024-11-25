@@ -12,7 +12,7 @@ RM				= rm -f
 
 # Source Files
 SRCS			= $(SRC_DIR)alive.c $(SRC_DIR)av_allocation.c $(SRC_DIR)data.c $(SRC_DIR)error_exit.c \
-				$(SRC_DIR)philo_utils.c $(SRC_DIR)philo.c
+				$(SRC_DIR)philo_utils.c $(SRC_DIR)philo.c $(SRC_DIR)threads_utils.c
 
 # Apply the pattern substitution to each source file in SRC and produce a corresponding list of object files in the OBJ_DIR
 OBJ 			= $(patsubst $(SRC_DIR)%.c,$(OBJ_DIR)%.o,$(SRCS))

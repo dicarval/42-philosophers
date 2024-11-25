@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/22 15:41:58 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/25 16:18:31 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ typedef struct s_philo
 	unsigned long	tt_die;
 	unsigned long	tt_eat;
 	unsigned long	tt_sleep;
-	long			nbr_tt_eat;
-	long			i_tt_eat;
+	unsigned int	nbr_tt_eat;
+	unsigned int	*i_tt_eat;
+	unsigned int	no_stop;
 	unsigned int	*id;
-	int				alive;
-	struct timeval	*last_meal;
+	unsigned int	alive;
+	unsigned long	*last_meal;
 	pthread_t		*philo;
 	pthread_t		eat_monit;
 }				t_philo;
@@ -41,8 +42,8 @@ typedef struct s_mutex
 {
 	pthread_mutex_t	message;
 	pthread_mutex_t	*forks;
-	pthread_mutex_t	loop[2];
-
+	pthread_mutex_t	curr_time;
+	pthread_mutex_t	var_uint;
 }				t_mutex;
 
 /*Struct function*/
@@ -59,6 +60,15 @@ unsigned long	ft_atoul(const char *str);
 
 /*Program message print*/
 void			print_message(int id, int message_code);
+
+/*Function to access current time*/
+unsigned long	get_current_time(void);
+
+unsigned long	set_ulint(unsigned long var);
+unsigned int	set_uint(unsigned int var);
+
+/*Mutexes initialization*/
+void			mutex_init(void);
 
 /*Error handle and freeing allocated memory*/
 void			error_hand(int error_code);

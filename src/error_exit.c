@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:09:08 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/20 11:16:54 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/25 11:24:27 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	ft_free(void)
 {
-	if (data()->forks)
-		free(data()->forks);
+	if (mutex()->forks)
+		free(mutex()->forks);
 	if (data()->id)
 		free(data()->id);
 	if (data()->philo)
