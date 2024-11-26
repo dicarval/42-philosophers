@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:09:08 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/25 11:24:27 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/26 11:38:08 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_free(void)
 void	error_hand(int error_code)
 {
 	ft_free();
+	if (error_code == 5)
+		printf("gettimeofday failed\n");
 	if (error_code == 4)
 		printf("Number of arguments incorrect.\nSyntax: number_of_philosophers\
  time_to_die time_to_eat time_to_sleep \

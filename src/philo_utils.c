@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:16:18 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/25 17:32:05 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:36:47 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,32 @@ unsigned long	ft_atoul(const char *str)
 	return (res);
 }
 
+int	alive_protcl(void)
+{
+	int	condition;
+
+	condition = 1;
+	pthread_mutex_lock(&mutex()->is_alive);
+	if (data()->alive)
+		condition = 0;
+	pthread_mutex_unlock(&mutex()->is_alive);
+	return (condition);
+}
+
 unsigned long	get_current_time(void)
 {
 	struct timeval	time;
+	unsigned long current_time;
 
 	pthread_mutex_lock(&(mutex()->curr_time));
 	if (gettimeofday(&time, NULL) == -1)
 	{
 		pthread_mutex_unlock(&(mutex()->curr_time));
-		return (0);
+		error_hand(5);
 	}
+	current_time = time.tv_sec * 1000 + time.tv_usec / 1000;
 	pthread_mutex_unlock(&(mutex()->curr_time));
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	return (current_time);
 }
 
 void	print_message(int id, int message_code)
@@ -61,19 +75,15 @@ void	print_message(int id, int message_code)
 
 	pthread_mutex_lock(&(mutex()->message));
 	timestamp = get_current_time();
-	//pthread_mutex_lock(&mutex()->var_uint);
-	if (timestamp == 0)
-		printf("gettimeofday failed\n");
-	else if (message_code == 1 && data()->alive)
+	if (message_code == 1 && !alive_protcl())
 		printf("%ld %d has taken a fork\n", timestamp, id);
-	else if (message_code == 2 && data()->alive)
+	else if (message_code == 2 && !alive_protcl())
 		printf("%ld %d is eating\n", timestamp, id);
-	else if (message_code == 3 && data()->alive)
+	else if (message_code == 3 && !alive_protcl())
 		printf("%ld %d is sleeping\n", timestamp, id);
-	else if (message_code == 4 && data()->alive)
+	else if (message_code == 4 && !alive_protcl())
 		printf("%ld %d is thinking\n", timestamp, id);
 	else if (message_code == 5)
 		printf("%ld %d died\n", timestamp, id);
-	//pthread_mutex_unlock(&mutex()->var_uint);
 	pthread_mutex_unlock(&(mutex()->message));
 }

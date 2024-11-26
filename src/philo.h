@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/25 16:18:31 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:26:15 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ typedef struct s_mutex
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	curr_time;
 	pthread_mutex_t	var_uint;
+	pthread_mutex_t	is_alive;
+	pthread_mutex_t	last_meal;
 }				t_mutex;
 
 /*Struct function*/
@@ -64,11 +66,23 @@ void			print_message(int id, int message_code);
 /*Function to access current time*/
 unsigned long	get_current_time(void);
 
-unsigned long	set_ulint(unsigned long var);
-unsigned int	set_uint(unsigned int var);
+unsigned int	get_uint(unsigned int *var);
+void			set_uint(pthread_mutex_t *mutex, unsigned int *where, \
+unsigned int value);
+
+void			eat(unsigned int id, unsigned int lock);
+void			sleep_think(unsigned int id, unsigned int lock);
+
+int				alive_protcl(void);
+unsigned long	ft_last_meal(unsigned int i);
+
+/*Mutexes initialization and elimination*/
+void			mutex_init(void);
+void			mutex_destroy(void);
 
 /*Mutexes initialization*/
-void			mutex_init(void);
+int				alive_protcl(void);
+unsigned long	ft_last_meal(unsigned int i);
 
 /*Error handle and freeing allocated memory*/
 void			error_hand(int error_code);

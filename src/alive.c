@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:34:13 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/25 17:31:14 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/26 17:41:33 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	nbr_tt_eat()
 	j = 0;
 	while (i < data()->nbr_philo)
 	{
-		if (data()->i_tt_eat[i] == (data()->nbr_tt_eat - 1))
+		if (get_uint(&data()->i_tt_eat[i]) == (data()->nbr_tt_eat - 1))
 			j++;
 		i++;
 	}
@@ -53,18 +53,19 @@ void	*alive(void *arg)
 		i = 0;
 		while (i < data()->nbr_philo)
 		{
-			if (data()->i_tt_eat[i] == (data()->nbr_tt_eat))
+			if (get_uint(&data()->i_tt_eat[i]) == (data()->nbr_tt_eat))
 				break ;
-			if (data()->alive && \
-			elapsed_time_meals(data()->last_meal[i]) > data()->tt_die)
+			printf("teste1\n");
+			if (alive_protcl() && \
+			elapsed_time_meals(ft_last_meal(i)) > data()->tt_die)
 			{
+				set_uint(&mutex()->is_alive, &data()->alive, 0);
 				print_message(i, 5);
-				data()->alive = set_uint(0);
 				break ;
 			}
 			i++;
 		}
-		if (!data()->alive || !(nbr_tt_eat()))
+		if (!alive_protcl() || !(nbr_tt_eat()))
 			break ;
 	}
 	return (NULL);
