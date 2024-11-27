@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:09:08 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/26 11:38:08 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/27 11:27:51 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	ft_free(void)
 		free(data()->philo);
 	if (data()->last_meal)
 		free(data()->last_meal);
+	if (data()->i_tt_eat)
+		free(data()->i_tt_eat);
 }
 
 void	error_hand(int error_code)

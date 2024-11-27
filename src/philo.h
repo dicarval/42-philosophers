@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/26 15:26:15 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:21:47 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ typedef struct s_philo
 	unsigned long	tt_eat;
 	unsigned long	tt_sleep;
 	unsigned int	nbr_tt_eat;
-	unsigned int	*i_tt_eat;
-	unsigned int	no_stop;
-	unsigned int	*id;
+	unsigned int	stop_eat;
 	unsigned int	alive;
+	unsigned int	*i_tt_eat;
+	unsigned int	*id;
 	unsigned long	*last_meal;
 	pthread_t		*philo;
 	pthread_t		eat_monit;
 }				t_philo;
 
-/*Mutex Struct*/
+/*Mutexes Struct*/
 typedef struct s_mutex
 {
 	pthread_mutex_t	message;
@@ -48,44 +48,56 @@ typedef struct s_mutex
 	pthread_mutex_t	last_meal;
 }				t_mutex;
 
-/*Struct function*/
-t_philo			*data(void);
-t_mutex			*mutex(void);
+/*Philo struct function*/
+t_philo				*data(void);
 
-/*Function to monitoring if all philosophers are alive*/
-void			*alive(void *arg);
+/*Mutexes struct function*/
+t_mutex				*mutex(void);
+
+/*Monitorization if all philosophers are alive*/
+void				*alive(void *arg);
+
+/*Checking the alive variable, avoiding threads conflicts*/
+int					alive_protcl(void);
 
 /*Checking input and allocation of memory*/
-void			av_allocation(char **av);
-void			number_max(char *av, int i);
-unsigned long	ft_atoul(const char *str);
+void				av_allocation(char **av);
+void				number_max(char *av, int i);
+unsigned long long	ft_atoull(const char *str);
 
 /*Program message print*/
-void			print_message(int id, int message_code);
+void				print_message(int id, int message_code);
 
-/*Function to access current time*/
-unsigned long	get_current_time(void);
+/*Access current time*/
+unsigned long		get_current_time(void);
 
-unsigned int	get_uint(unsigned int *var);
-void			set_uint(pthread_mutex_t *mutex, unsigned int *where, \
+/*Reading the variable, avoiding threads conflicts*/
+unsigned int		get_uint(unsigned int *var);
+
+/*Writing the variable, avoiding threads conflicts*/
+void				set_uint(pthread_mutex_t *mutex, unsigned int *where, \
 unsigned int value);
 
-void			eat(unsigned int id, unsigned int lock);
-void			sleep_think(unsigned int id, unsigned int lock);
+/*Reading the last_meal variable, avoiding threads conflicts*/
+unsigned long		get_last_meal(unsigned int i);
 
-int				alive_protcl(void);
-unsigned long	ft_last_meal(unsigned int i);
+/*Eating action*/
+void				eat(unsigned int id, unsigned int lock);
 
-/*Mutexes initialization and elimination*/
-void			mutex_init(void);
-void			mutex_destroy(void);
+/*Sleep and thinking action*/
+void				sleep_think(unsigned int id, unsigned int lock);
+
+/*Checking number of times that philosophers have eat*/
+int					stop_eat();
 
 /*Mutexes initialization*/
-int				alive_protcl(void);
-unsigned long	ft_last_meal(unsigned int i);
+void				mutex_init(void);
+/*Mutexes elimination*/
+void				mutex_destroy(void);
 
-/*Error handle and freeing allocated memory*/
-void			error_hand(int error_code);
-void			ft_free(void);
+/*Error handle*/
+void				error_hand(int error_code);
+
+void				ft_free(void);
 
 #endif

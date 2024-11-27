@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:10:06 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/26 14:47:10 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/11/27 14:58:44 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ unsigned int value)
 	pthread_mutex_unlock(mutex);
 }
 
-unsigned long	ft_last_meal(unsigned int i)
+unsigned long	get_last_meal(unsigned int i)
 {
 	unsigned long	lst_meal;
 
@@ -67,5 +67,3 @@ unsigned long	ft_last_meal(unsigned int i)
 	pthread_mutex_unlock(&mutex()->last_meal);
 	return (lst_meal);
 }
-
-
