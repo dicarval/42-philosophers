@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 13:16:45 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:18:41 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void				av_allocation(char **av);
 void				number_max(char *av, int i);
 unsigned long long	ft_atoull(const char *str);
 
-/*Program message print*/
+/*Program's message print*/
 void				print_message(int id, int message_code);
 
 /*Access current time*/
