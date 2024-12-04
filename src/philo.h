@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 13:18:41 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:20:28 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ typedef struct s_mutex
 	pthread_mutex_t	message;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	curr_time;
-	pthread_mutex_t	var_uint;
 	pthread_mutex_t	is_alive;
+	pthread_mutex_t	var_uint;
 	pthread_mutex_t	last_meal;
 }				t_mutex;
 
