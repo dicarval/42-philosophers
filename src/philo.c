@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/27 16:13:20 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:31:10 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	forks_up(unsigned int id, int right, int left)
 {
 	unsigned int	lock;
 
-	if(data()->nbr_philo == 1)
-			return (2);
+	if (data()->nbr_philo == 1)
+		return (2);
 	lock = 0;
 	if (id % 2 == 0 && (alive_protcl()))
 	{
@@ -40,8 +40,8 @@ int	forks_up(unsigned int id, int right, int left)
 }
 
 /*Setting down the forks*/
-void	forks_down(unsigned int id, unsigned int right, unsigned int left,\
- unsigned int lock)
+void	forks_down(unsigned int id, unsigned int right, unsigned int left, \
+unsigned int lock)
 {
 	if (lock == 2)
 	{

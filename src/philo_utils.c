@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:16:18 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/27 16:13:33 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:32:55 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,12 @@ unsigned long	get_current_time(void)
 	return (current_time);
 }
 
-int	stop_eat()
+int	stop_eat(void)
 {
 	unsigned int	i;
 	unsigned int	j;
 
-	if(data()->nbr_tt_eat == 0)
+	if (data()->nbr_tt_eat == 0)
 		return (1);
 	i = 0;
 	j = 0;
@@ -85,7 +85,6 @@ int	stop_eat()
 void	print_message(int id, int message_code)
 {
 	unsigned long	timestamp;
-	unsigned int i;
 
 	pthread_mutex_lock(&(mutex()->message));
 	timestamp = get_current_time();
@@ -99,11 +98,5 @@ void	print_message(int id, int message_code)
 		printf("%ld %d is thinking\n", timestamp, id);
 	else if (message_code == 5)
 		printf("%ld %d died\n", timestamp, id);
-	else if (message_code == 0)
-	{
-		i = -1;
-		while (++i < data()->nbr_philo)
-			printf("The philosopher %u ate %u times \n", data()->id[i], data()->i_tt_eat[i]);
-	}
 	pthread_mutex_unlock(&(mutex()->message));
 }

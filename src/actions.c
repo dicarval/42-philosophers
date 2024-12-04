@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 14:13:46 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/27 16:03:40 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:34:03 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	sleep_think(unsigned int id, unsigned int lock)
 
 void	eat(unsigned int id, unsigned int lock)
 {
-	if (get_uint(&data()->stop_eat)&& (alive_protcl()) && lock == 1)
+	if (get_uint(&data()->stop_eat) && (alive_protcl()) && lock == 1)
 	{
 		pthread_mutex_lock(&mutex()->last_meal);
 		data()->last_meal[id] = get_current_time();

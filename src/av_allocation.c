@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:29:58 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/27 15:19:32 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:34:14 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	mem_alloc(void)
 	data()->i_tt_eat = malloc(sizeof(unsigned int) * (data()->nbr_philo));
 	if (data()->i_tt_eat == NULL)
 		error_hand(3);
-	while(i < data()->nbr_philo)
+	while (i < data()->nbr_philo)
 		data()->i_tt_eat[i++] = 0;
 }
 

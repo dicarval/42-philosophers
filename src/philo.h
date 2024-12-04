@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/27 15:21:47 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:33:46 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void				eat(unsigned int id, unsigned int lock);
 void				sleep_think(unsigned int id, unsigned int lock);
 
 /*Checking number of times that philosophers have eat*/
-int					stop_eat();
+int					stop_eat(void);
 
 /*Mutexes initialization*/
 void				mutex_init(void);

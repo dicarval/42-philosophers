@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:34:13 by dicarval          #+#    #+#             */
-/*   Updated: 2024/11/27 16:11:00 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 10:31:34 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,11 @@ void	*alive(void *arg)
 		{
 			if (!(stop_eat()))
 				break ;
-			if ((alive_protcl()) && get_uint(&data()->stop_eat) &&\
+			if ((alive_protcl()) && get_uint(&data()->stop_eat) && \
 			elapsed_time_meals(get_last_meal(i)) > data()->tt_die)
 			{
 				set_uint(&mutex()->is_alive, &data()->alive, 0);
 				print_message(i, 5);
-				print_message(i, 0);
 				break ;
 			}
 			i++;
