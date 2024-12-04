@@ -6,13 +6,13 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 10:31:10 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:22:26 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*Catching the forks*/
+/*Catches the forks*/
 int	forks_up(unsigned int id, int right, int left)
 {
 	unsigned int	lock;
@@ -39,7 +39,7 @@ int	forks_up(unsigned int id, int right, int left)
 	return (lock);
 }
 
-/*Setting down the forks*/
+/*Set down the forks*/
 void	forks_down(unsigned int id, unsigned int right, unsigned int left, \
 unsigned int lock)
 {
@@ -61,7 +61,7 @@ unsigned int lock)
 	}
 }
 
-/*Running the loop*/
+/*Runes the loop*/
 void	*philo_loop(void *arg)
 {
 	unsigned int		id;
@@ -83,7 +83,7 @@ void	*philo_loop(void *arg)
 	return (NULL);
 }
 
-/*Managing the threads*/
+/*Manages the threads*/
 void	thread_management(void)
 {
 	unsigned int	i;
