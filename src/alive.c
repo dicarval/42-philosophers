@@ -6,13 +6,13 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:34:13 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 10:31:34 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:13:59 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-/*Calculating the elapsed time since the last meal*/
+/*Calculates the elapsed time since the last meal*/
 unsigned long	elapsed_time_meals(unsigned long last_meal)
 {
 	unsigned long	elapsed;

@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 10:33:46 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/04 13:16:45 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ t_mutex				*mutex(void);
 /*Monitorization if all philosophers are alive*/
 void				*alive(void *arg);
 
-/*Checking the alive variable, avoiding threads conflicts*/
+/*Checks the alive variable, avoiding threads conflicts*/
 int					alive_protcl(void);
 
-/*Checking input and allocation of memory*/
+/*Checks the input and allocation of memory*/
 void				av_allocation(char **av);
 void				number_max(char *av, int i);
 unsigned long long	ft_atoull(const char *str);
@@ -71,27 +71,28 @@ void				print_message(int id, int message_code);
 /*Access current time*/
 unsigned long		get_current_time(void);
 
-/*Reading the variable, avoiding threads conflicts*/
+/*Reads the variable using mutexes, avoiding threads conflicts*/
 unsigned int		get_uint(unsigned int *var);
 
-/*Writing the variable, avoiding threads conflicts*/
+/*Writes the variable using mutexes, avoiding threads conflicts*/
 void				set_uint(pthread_mutex_t *mutex, unsigned int *where, \
 unsigned int value);
 
-/*Reading the last_meal variable, avoiding threads conflicts*/
+/*Reads the last_meal variable using mutexes, avoiding threads conflicts*/
 unsigned long		get_last_meal(unsigned int i);
 
-/*Eating action*/
+/*Eat action*/
 void				eat(unsigned int id, unsigned int lock);
 
-/*Sleep and thinking action*/
+/*Sleep and think action*/
 void				sleep_think(unsigned int id, unsigned int lock);
 
-/*Checking number of times that philosophers have eat*/
+/*Checks the number of times that philosophers have eat*/
 int					stop_eat(void);
 
 /*Mutexes initialization*/
 void				mutex_init(void);
+
 /*Mutexes elimination*/
 void				mutex_destroy(void);
 
