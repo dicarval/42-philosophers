@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 13:22:26 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/05 15:11:05 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,19 @@
 /*Catches the forks*/
 int	forks_up(unsigned int id, int right, int left)
 {
-	unsigned int	lock;
-
-	if (data()->nbr_philo == 1)
+	if (data()->nbr_philo == 1 && (alive_protcl()))
+	{
+		print_message(id, 1);
+		pthread_mutex_lock(&(mutex()->forks[right]));
 		return (2);
-	lock = 0;
+	}
 	if (id % 2 == 0 && (alive_protcl()))
 	{
 		pthread_mutex_lock(&(mutex()->forks[right]));
 		print_message(id, 1);
 		pthread_mutex_lock(&(mutex()->forks[left]));
 		print_message(id, 1);
-		lock = 1;
+		return (1);
 	}
 	else if ((alive_protcl()))
 	{
@@ -34,9 +35,9 @@ int	forks_up(unsigned int id, int right, int left)
 		print_message(id, 1);
 		pthread_mutex_lock(&(mutex()->forks[right]));
 		print_message(id, 1);
-		lock = 1;
+		return (1);
 	}
-	return (lock);
+	return (0);
 }
 
 /*Set down the forks*/
@@ -72,13 +73,12 @@ void	*philo_loop(void *arg)
 	id = *(int *)arg;
 	right = id;
 	left = (id + 1) % (data()->nbr_philo);
-	while ((get_uint(&data()->stop_eat)) && (alive_protcl()))
+	while ((alive_protcl()) && get_uint(&data()->stop_eat))
 	{
 		lock = forks_up(id, right, left);
 		eat(id, lock);
 		forks_down(id, right, left, lock);
-		if (get_uint(&data()->stop_eat))
-			sleep_think(id, lock);
+		sleep_think(id, lock);
 	}
 	return (NULL);
 }

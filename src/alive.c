@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:34:13 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 13:13:59 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/05 16:51:29 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,30 @@ int	alive_protcl(void)
 	return (condition);
 }
 
+int	stop_eat(void)
+{
+	unsigned int	i;
+	unsigned int	j;
+
+	if (data()->nbr_tt_eat == 0)
+		return (1);
+	i = 0;
+	j = 0;
+	while (i < data()->nbr_philo)
+	{
+		if (get_uint(&data()->i_tt_eat[i]) == (data()->nbr_tt_eat))
+			j++;
+		i++;
+	}
+	if (j == (data()->nbr_philo))
+	{
+		set_uint(&mutex()->var_uint, &data()->stop_eat, 0);
+		return (0);
+	}
+	else
+		return (1);
+}
+
 void	*alive(void *arg)
 {
 	unsigned int	i;
@@ -47,7 +71,7 @@ void	*alive(void *arg)
 		{
 			if (!(stop_eat()))
 				break ;
-			if ((alive_protcl()) && get_uint(&data()->stop_eat) && \
+			if ((alive_protcl()) && \
 			elapsed_time_meals(get_last_meal(i)) > data()->tt_die)
 			{
 				set_uint(&mutex()->is_alive, &data()->alive, 0);
@@ -56,7 +80,9 @@ void	*alive(void *arg)
 			}
 			i++;
 		}
-		if (!(alive_protcl()) || !get_uint(&data()->stop_eat))
+		if (!(alive_protcl()))
+			break ;
+		if (!(data()->stop_eat))
 			break ;
 	}
 	return (NULL);

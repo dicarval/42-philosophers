@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 13:20:28 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/05 12:06:14 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@
 typedef struct s_philo
 {
 	unsigned int	nbr_philo;
-	unsigned long	tt_die;
-	unsigned long	tt_eat;
-	unsigned long	tt_sleep;
+	unsigned int	tt_die;
+	unsigned int	tt_eat;
+	unsigned int	tt_sleep;
 	unsigned int	nbr_tt_eat;
 	unsigned int	stop_eat;
 	unsigned int	alive;
@@ -62,8 +62,9 @@ int					alive_protcl(void);
 
 /*Checks the input and allocation of memory*/
 void				av_allocation(char **av);
-void				number_max(char *av, int i);
-unsigned long long	ft_atoull(const char *str);
+
+/*ASCII to unsigned long*/
+unsigned long		ft_atoul(const char *str);
 
 /*Program's message print*/
 void				print_message(int id, int message_code);

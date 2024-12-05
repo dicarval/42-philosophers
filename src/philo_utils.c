@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:16:18 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 10:32:55 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:42:51 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	ft_isdigit(int c)
 	return (c >= 48 && c <= 57);
 }
 
-unsigned long long	ft_atoull(const char *str)
+unsigned long	ft_atoul(const char *str)
 {
-	unsigned long long	res;
-	unsigned int		i;
+	unsigned long	res;
+	unsigned int	i;
 
 	res = 0;
 	i = 0;
@@ -30,7 +30,7 @@ unsigned long long	ft_atoull(const char *str)
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			error_hand(2);
+			error_hand(1);
 		i++;
 	}
 	while (ft_isdigit(str[i]))
@@ -57,31 +57,6 @@ unsigned long	get_current_time(void)
 	return (current_time);
 }
 
-int	stop_eat(void)
-{
-	unsigned int	i;
-	unsigned int	j;
-
-	if (data()->nbr_tt_eat == 0)
-		return (1);
-	i = 0;
-	j = 0;
-	while (i < data()->nbr_philo)
-	{
-		if (get_uint(&data()->i_tt_eat[i]) == (data()->nbr_tt_eat))
-			j++;
-		i++;
-	}
-	if (j == (data()->nbr_philo - 1))
-	{
-		set_uint(&mutex()->var_uint, &data()->stop_eat, 0);
-		print_message(i, 0);
-		return (0);
-	}
-	else
-		return (1);
-}
-
 void	print_message(int id, int message_code)
 {
 	unsigned long	timestamp;
@@ -98,5 +73,8 @@ void	print_message(int id, int message_code)
 		printf("%ld %d is thinking\n", timestamp, id);
 	else if (message_code == 5)
 		printf("%ld %d died\n", timestamp, id);
+	else if (message_code == 0)
+		printf("Impossible any philosopher to eat.\n\
+number_of_times_each_philosopher_must_eat = 0.\n");
 	pthread_mutex_unlock(&(mutex()->message));
 }

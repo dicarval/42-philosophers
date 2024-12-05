@@ -6,25 +6,11 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:29:58 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/04 10:34:14 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/05 17:46:40 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	number_max(char *arg, int i)
-{
-	if (i == 1 || i == 5)
-	{
-		if (ft_atoull(arg) > UINT_MAX)
-			error_hand(2);
-	}
-	else
-	{
-		if (ft_atoull(arg) > ULONG_MAX)
-			error_hand(2);
-	}
-}
 
 void	av_check(char **av)
 {
@@ -42,7 +28,8 @@ void	av_check(char **av)
 			else
 				error_hand(1);
 		}
-		number_max(av[i], i);
+		if (ft_atoul(av[i]) > UINT_MAX)
+			error_hand(1);
 		i++;
 	}
 }
@@ -79,17 +66,22 @@ void	mem_alloc(void)
 void	av_allocation(char **av)
 {
 	av_check(av);
-	data()->nbr_philo = ft_atoull(av[1]);
-	if (data()->nbr_philo == 0)
+	data()->nbr_philo = ft_atoul(av[1]);
+	if (data()->nbr_philo == 0 || data()->nbr_philo > 300)
 		error_hand(2);
-	data()->tt_die = ft_atoull(av[2]);
-	data()->tt_eat = ft_atoull(av[3]);
-	data()->tt_sleep = ft_atoull(av[4]);
+	data()->tt_die = ft_atoul(av[2]);
+	data()->tt_eat = ft_atoul(av[3]);
+	data()->tt_sleep = ft_atoul(av[4]);
 	if (av[5])
-		data()->nbr_tt_eat = ft_atoull(av[5]);
+		data()->nbr_tt_eat = ft_atoul(av[5]);
 	else
 		data()->nbr_tt_eat = 0;
 	mem_alloc();
 	data()->alive = 1;
 	data()->stop_eat = 1;
+	if (av[5] && av[5][0] == '0' && av[5][1] == '\0')
+	{
+		print_message(0, 0);
+		data()->stop_eat = 0;
+	}
 }
