@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:16:18 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/05 18:36:39 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:44:53 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,17 +62,17 @@ void	print_message(int id, int message_code)
 	unsigned long	timestamp;
 
 	pthread_mutex_lock(&(mutex()->message));
-	timestamp = get_current_time();
+	timestamp = get_current_time() - data()->start_time;
 	if (message_code == 1 && (alive_protcl()))
-		printf("%ld %d has taken a fork\n", timestamp, id);
+		printf("%ld %d has taken a fork\n", timestamp, id + 1);
 	else if (message_code == 2 && (alive_protcl()))
-		printf("%ld %d is eating\n", timestamp, id);
+		printf("%ld %d is eating\n", timestamp, id + 1);
 	else if (message_code == 3 && (alive_protcl()))
-		printf("%ld %d is sleeping\n", timestamp, id);
+		printf("%ld %d is sleeping\n", timestamp, id + 1);
 	else if (message_code == 4 && (alive_protcl()))
-		printf("%ld %d is thinking\n", timestamp, id);
+		printf("%ld %d is thinking\n", timestamp, id + 1);
 	else if (message_code == 5)
-		printf("%ld %d died\n", timestamp, id);
+		printf("%ld %d died\n", timestamp, id + 1);
 	else if (message_code == 0)
 		printf("Impossible any philosopher to eat.\n\
 number_of_times_each_philosopher_must_eat = 0.\n");

@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/05 18:36:25 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:45:12 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,8 @@ void	thread_management(void)
 	while (i < (data()->nbr_philo))
 	{
 		data()->id[i] = i;
+		if (get_uint(&data()->id[i]) == 0)
+			data()->start_time = get_current_time();
 		pthread_mutex_lock(&mutex()->last_meal);
 		data()->last_meal[i] = get_current_time();
 		pthread_mutex_unlock(&mutex()->last_meal);

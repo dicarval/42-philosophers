@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/05 18:36:41 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:37:32 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_philo
 	unsigned int	alive;
 	unsigned int	*i_tt_eat;
 	unsigned int	*id;
+	unsigned long	start_time;
 	unsigned long	*last_meal;
 	pthread_t		*philo;
 	pthread_t		eat_monit;
