@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:09:08 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/05 18:36:28 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/09 15:55:51 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	error_hand(int error_code)
 	if (error_code == 3)
 		printf("Malloc failed, exiting.\n");
 	if (error_code == 2)
-		printf("The number philosophers is out of range, please reform.\n");
+		printf("The number of philosophers is out of range, please reform.\n");
 	if (error_code == 1)
 		printf("Invalid argument(s), please ensure the input meets the \
 specified criteria.\n");
