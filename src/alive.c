@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 13:34:13 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/05 18:36:33 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:10:49 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	*alive(void *arg)
 			elapsed_time_meals(get_last_meal(i)) > data()->tt_die)
 			{
 				set_uint(&mutex()->is_alive, &data()->alive, 0);
-				print_message(i, 5);
+				print_message(i, DIE);
 				break ;
 			}
 			i++;

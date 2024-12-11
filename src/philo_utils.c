@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 10:16:18 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/09 15:44:53 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:21:57 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ unsigned long	ft_atoul(const char *str)
 	if (str[i] == '-' || str[i] == '+')
 	{
 		if (str[i] == '-')
-			error_hand(1);
+			error_hand(INVAL_ARG);
 		i++;
 	}
 	while (ft_isdigit(str[i]))
@@ -50,7 +50,7 @@ unsigned long	get_current_time(void)
 	if (gettimeofday(&time, NULL) == -1)
 	{
 		pthread_mutex_unlock(&(mutex()->curr_time));
-		error_hand(5);
+		error_hand(GET_TIME_DAY);
 	}
 	current_time = time.tv_sec * 1000 + time.tv_usec / 1000;
 	pthread_mutex_unlock(&(mutex()->curr_time));
@@ -63,17 +63,17 @@ void	print_message(int id, int message_code)
 
 	pthread_mutex_lock(&(mutex()->message));
 	timestamp = get_current_time() - data()->start_time;
-	if (message_code == 1 && (alive_protcl()))
+	if (message_code == FORK && (alive_protcl()))
 		printf("%ld %d has taken a fork\n", timestamp, id + 1);
-	else if (message_code == 2 && (alive_protcl()))
+	else if (message_code == EAT && (alive_protcl()))
 		printf("%ld %d is eating\n", timestamp, id + 1);
-	else if (message_code == 3 && (alive_protcl()))
+	else if (message_code == SLEEP && (alive_protcl()))
 		printf("%ld %d is sleeping\n", timestamp, id + 1);
-	else if (message_code == 4 && (alive_protcl()))
+	else if (message_code == THINK && (alive_protcl()))
 		printf("%ld %d is thinking\n", timestamp, id + 1);
-	else if (message_code == 5)
+	else if (message_code == DIE)
 		printf("%ld %d died\n", timestamp, id + 1);
-	else if (message_code == 0)
+	else if (message_code == EAT_0)
 		printf("Impossible any philosopher to eat.\n\
 number_of_times_each_philosopher_must_eat = 0.\n");
 	pthread_mutex_unlock(&(mutex()->message));

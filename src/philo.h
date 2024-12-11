@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 10:59:47 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/09 15:37:32 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:29:09 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,23 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <limits.h>
+
+/*Message print*/
+
+# define EAT_0 0
+# define FORK 1
+# define EAT 2
+# define SLEEP 3
+# define THINK 4
+# define DIE 5
+
+/*Error handle*/
+
+# define INVAL_ARG 1
+# define PHILO_NUM 2
+# define MALLOC 3
+# define ARG_NUM 4
+# define GET_TIME_DAY 5
 
 /*Philo Struct*/
 typedef struct s_philo

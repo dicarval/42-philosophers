@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 11:38:41 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/09 15:45:12 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:24:02 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,24 @@ int	forks_up(unsigned int id, int right, int left)
 {
 	if (data()->nbr_philo == 1 && (alive_protcl()))
 	{
-		print_message(id, 1);
+		print_message(id, FORK);
 		pthread_mutex_lock(&(mutex()->forks[right]));
 		return (2);
 	}
-	if (id % 2 == 0 && (alive_protcl()))
+	if (get_uint(&data()->stop_eat) && id % 2 == 0 && (alive_protcl()))
 	{
 		pthread_mutex_lock(&(mutex()->forks[right]));
-		print_message(id, 1);
+		print_message(id, FORK);
 		pthread_mutex_lock(&(mutex()->forks[left]));
-		print_message(id, 1);
+		print_message(id, FORK);
 		return (1);
 	}
-	else if ((alive_protcl()))
+	else if (get_uint(&data()->stop_eat) && (alive_protcl()))
 	{
 		pthread_mutex_lock(&(mutex()->forks[left]));
-		print_message(id, 1);
+		print_message(id, FORK);
 		pthread_mutex_lock(&(mutex()->forks[right]));
-		print_message(id, 1);
+		print_message(id, FORK);
 		return (1);
 	}
 	return (0);
@@ -118,6 +118,6 @@ int	main(int ac, char **av)
 		av_allocation(av);
 		thread_management();
 	}
-	error_hand(4);
+	error_hand(ARG_NUM);
 	return (0);
 }

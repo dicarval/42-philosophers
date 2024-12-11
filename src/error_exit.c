@@ -6,7 +6,7 @@
 /*   By: dicarval <dicarval@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/18 11:09:08 by dicarval          #+#    #+#             */
-/*   Updated: 2024/12/09 15:55:51 by dicarval         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:20:42 by dicarval         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +29,17 @@ void	ft_free(void)
 void	error_hand(int error_code)
 {
 	ft_free();
-	if (error_code == 5)
+	if (error_code == GET_TIME_DAY)
 		printf("gettimeofday failed.\n");
-	if (error_code == 4)
+	if (error_code == ARG_NUM)
 		printf("Number of arguments incorrect.\nSyntax: number_of_philosophers\
  time_to_die time_to_eat time_to_sleep \
 [number_of_times_each_philosopher_must_eat]\n");
-	if (error_code == 3)
+	if (error_code == MALLOC)
 		printf("Malloc failed, exiting.\n");
-	if (error_code == 2)
+	if (error_code == PHILO_NUM)
 		printf("The number of philosophers is out of range, please reform.\n");
-	if (error_code == 1)
+	if (error_code == INVAL_ARG)
 		printf("Invalid argument(s), please ensure the input meets the \
 specified criteria.\n");
 	exit(error_code);
