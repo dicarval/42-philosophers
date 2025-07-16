@@ -1,142 +1,59 @@
-#	Pipex - 42 School Project Lisbon
+# Philosophers - 42 School Project (Lisbon)
 
 ### Table of Contents
 * [Introduction](#introduction-)
-* [Project Requirements](#project-requirements-)
-* [Program Usage](#program-usage-)
-* [Key Concepts](#key-concepts-)
-* [Bonus Features (if applicable)](#bonus-features-if-applicable-)
+* [Project Objectives](#project-objectives-)
+* [How it Works](#how-it-works-)
+* [Features](#features-)
+* [Learning Outcomes](#learning-outcomes-)
 * [Conclusion](#conclusion-)
 
-##	Introduction 📖
+## Introduction 📖
 
-**Pipex** is a 42 School project designed to replicate the functionality of shell pipelines. Pipelines allow the output of one command to be passed as the input to another command. This project involves creating a program that mimics the behavior of piping multiple commands using redirection.
+The *philosophers* project at 42 School is a well-known concurrency and synchronization challenge that explores the Dining Philosophers problem. This classic problem tests students' ability to manage multiple processes or threads while avoiding issues like deadlocks and starvation.
 
-The goal of **pipex** is to implement the following shell command in C:
-```
-< infile cmd1 | cmd2 > outfile
-```
-This means the program will:
+The project requires implementing a simulation where philosophers sit around a table, each alternating between thinking, eating, and sleeping. The challenge lies in ensuring that they can eat without running into race conditions, deadlocks, or resource starvation.
 
-1. Read from a file (infile).
+## Project Objectives 🏆
 
-2. Pass the output of cmd1 as input to cmd2.
+The objectives of the *philosophers* project are:
 
-3. Write the output of cmd2 to another file (outfile).
+1. **Understanding Concurrency:** Develop a multi-threaded or multi-process program that models the behavior of philosophers dining at a table.
+2. **Synchronization Techniques:** Use mutexes, semaphores, or other synchronization mechanisms to manage shared resources (forks).
+3. **Avoiding Deadlocks:** Implement strategies to ensure that no philosopher gets permanently stuck waiting for a fork.
+4. **Preventing Starvation:** Ensure that every philosopher gets a chance to eat instead of some being indefinitely deprived.
 
-##	Project Requirements 📋
+## How it Works 🔧
 
-The project focuses on several key concepts:
+The *philosophers* program simulates a scenario where:
 
+1. Each philosopher can be in one of three states: *thinking*, *eating*, or *sleeping*.
+2. Each philosopher requires two forks to eat.
+3. The forks are shared between adjacent philosophers.
+4. The program must ensure proper synchronization to prevent two philosophers from picking up the same fork at the same time.
+5. The simulation must continue until a stopping condition is met (e.g., a philosopher dies due to starvation or a predefined time limit is reached).
 
-• **Process creation** using fork().
+## Features ✨
 
-• **Inter-process communication** using pipes (pipe()).
+1. **Thread or Process-Based Simulation:** The project can be implemented using either threads or processes, with appropriate synchronization.
+2. **Precise Timing:** The execution must handle precise timing, ensuring philosophers eat and sleep for specified durations.
+3. **Logging Events:** The program should print actions in real-time, such as a philosopher picking up a fork, eating, thinking, or dying.
+4. **Parameterization:** The simulation should accept parameters such as:
+   - Number of philosophers
+   - Time to die
+   - Time to eat
+   - Time to sleep
+   - Optional: Number of times each philosopher must eat
 
-• **File descriptors management** for redirection using dup2().
+## Learning Outcomes 🎓
 
-• **Execution of commands** using execve().
+By completing this project, you will:
 
-• Error handling and managing edge cases.
+- **Master Concurrency Handling:** Learn how to manage multiple threads or processes.
+- **Understand Synchronization Mechanisms:** Gain experience with mutexes, semaphores, and other synchronization techniques.
+- **Develop Debugging Skills:** Debugging multi-threaded programs is challenging and requires careful thought.
+- **Improve Algorithmic Thinking:** Design efficient algorithms to prevent deadlocks and starvation.
 
-##	Program Usage 💻
+## Conclusion ✅
 
-To get started, first clone the repository from GitHub and then execute make on the repository.
-
-```
-make
-```
-
-To execute the pipex program, you can use the following syntax:
-
-```
-./pipex infile "cmd1" "cmd2" outfile
-```
-
-Where:
-
-• infile: The file from which cmd1 will read its input.
-
-• cmd1: The first command to be executed.
-
-• cmd2: The second command, which will take the output of cmd1 as input.
-
-• outfile: The file where the output of cmd2 will be written.
-
-For example:
-```
-./pipex input.txt "grep something" "wc -l" output.txt
-```
-
-This will:
-
-1. Read from input.txt.
-
-2. Execute grep something on the input.
-
-3. Pass the output of grep to wc -l.
-
-4. Write the result to output.txt.
-
-
-##	Key Concepts 🧠
-
-1. **Pipes:**
-
-• Pipes are used to connect two processes, allowing one to write data that the other can read.
-
-• A pipe is created using the pipe() system call, which returns two file descriptors: one for reading and one for writing.
-
-2. **Redirection:**
-
-• File redirection is used to replace the standard input/output of a command with files.
-
-• The dup2() function is used to duplicate file descriptors for redirection, ensuring that input/output are connected to the appropriate files or pipes.
-
-3. **Forking and Executing:**
-
-• The program creates child processes using fork(), which then execute the desired commands.
-
-• Each child process executes a command using execve(), and its input/output is redirected appropriately using pipes and file descriptors.
-
-4. **Error Handling:**
-
-• Proper error handling is critical in pipex. If a command fails, the program should display an error message and return the appropriate exit code.
-
-• The program checks for errors such as file access issues or invalid commands.
-
-#	Bonus Features (if applicable) 🏅
-
-• **Compilation:**
-
-```
-make bonus
-```
-Once compiled, you can run pipex using the following syntax:
-
-```
-./pipex here_doc EOF cmd1 cmd2 outfile
-./pipex infile cmd1 cmd2 cmdn... outfile
-```
-
-• **Multiple commands:**
-
-The bonus part of the project supports multiple commands in the pipeline. For example:
-```
-< infile cmd1 | cmd2 | cmd3 > outfile
-```
-
-This requires handling a dynamic number of commands, which adds complexity in managing pipes and processes.
-
-• **Here Documents:**
-
-The bonus also includes support for here-documents, which allow input to be provided directly in the command line rather than from a file. This is similar to:
-```
-<< limiter cmd1 | cmd2 > outfile
-```
-
-##	Conclusion ✅
-
-The pipex project serves as an excellent introduction to Unix system calls, process management, and inter-process communication. It offers a deeper understanding of how the shell operates behind the scenes by allowing you to implement piping functionality from scratch.
-
-Throughout this project, I also explored new libraries and learned valuable concepts related to handling pointers, structures, and data. As a result, I applied different techniques for managing memory addresses in various parts of the code. Although I could have handled them uniformly, I opted to experiment with different approaches to reinforce my learning and gain a deeper understanding of memory management. This hands-on experience helped solidify my understanding of these concepts.
+The *philosophers* project is an excellent introduction to concurrent programming and synchronization. By completing it, students gain crucial skills in managing shared resources, debugging complex multi-threaded applications, and ensuring efficient program execution. Mastering this project will provide a solid foundation for understanding real-world concurrency issues in software development.
