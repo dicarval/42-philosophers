@@ -19,7 +19,7 @@ The project requires implementing a simulation where philosophers sit around a t
 The objectives of the *philosophers* project are:
 
 1. **Understanding Concurrency:** Develop a multi-threaded or multi-process program that models the behavior of philosophers dining at a table.
-2. **Synchronization Techniques:** Use mutexes, semaphores, or other synchronization mechanisms to manage shared resources (forks).
+2. **Synchronization Techniques:** Use mutexes or other synchronization mechanisms to manage shared resources (forks).
 3. **Avoiding Deadlocks:** Implement strategies to ensure that no philosopher gets permanently stuck waiting for a fork.
 4. **Preventing Starvation:** Ensure that every philosopher gets a chance to eat instead of some being indefinitely deprived.
 
@@ -35,7 +35,7 @@ The *philosophers* program simulates a scenario where:
 
 ## Features ✨
 
-1. **Thread or Process-Based Simulation:** The project can be implemented using either threads or processes, with appropriate synchronization.
+1. **Thread Simulation:** The project can be implemented using either threads, with appropriate synchronization.
 2. **Precise Timing:** The execution must handle precise timing, ensuring philosophers eat and sleep for specified durations.
 3. **Logging Events:** The program should print actions in real-time, such as a philosopher picking up a fork, eating, thinking, or dying.
 4. **Parameterization:** The simulation should accept parameters such as:
@@ -49,8 +49,8 @@ The *philosophers* program simulates a scenario where:
 
 By completing this project, you will:
 
-- **Master Concurrency Handling:** Learn how to manage multiple threads or processes.
-- **Understand Synchronization Mechanisms:** Gain experience with mutexes, semaphores, and other synchronization techniques.
+- **Master Concurrency Handling:** Learn how to manage multiple threads.
+- **Understand Synchronization Mechanisms:** Gain experience with mutexes and other synchronization techniques.
 - **Develop Debugging Skills:** Debugging multi-threaded programs is challenging and requires careful thought.
 - **Improve Algorithmic Thinking:** Design efficient algorithms to prevent deadlocks and starvation.
 
