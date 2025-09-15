@@ -56,4 +56,4 @@ By completing this project, you will:
 
 ## Conclusion ✅
 
-The *philosophers* project is an excellent introduction to concurrent programming and synchronization. By completing it, students gain crucial skills in managing shared resources, debugging complex multi-threaded applications, and ensuring efficient program execution. Mastering this project will provide a solid foundation for understanding real-world concurrency issues in software development.
+The *philosophers* project is an excellent introduction to concurrent programming and synchronization. By completing it, students gain crucial skills in managing shared resources, debugging complex multi-threaded applications, and ensuring efficient program execution. Mastering this project provided a solid foundation for understanding real-world concurrency issues in software development.
